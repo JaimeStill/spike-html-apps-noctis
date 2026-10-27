@@ -21,11 +21,16 @@
  * Noctis has no orange or purple slot, and Hibernus's ansiYellow is an orange: --orange takes
  * ansiBrightYellow, an orange in both; --yellow takes Hibernus's yellow, the CONSTANT token color,
  * and Obscuro's ansiYellow; --purple takes the NUMBER token color, Noctis's one violet. Its red is
- * ansiRed, an orange-red in both, and its magenta ansiMagenta, a pink.
+ * ansiRed, an orange-red in both, and its magenta ansiMagenta, a pink. Where Hibernus's theme file
+ * holds a swatch of the same hue with more contrast over --bg than its ANSI slot, its hue takes
+ * the highest-contrast one: --red list.errorForeground, --green
+ * gitDecoration.addedResourceForeground, and --cyan textBlockQuote.border. Its orange, blue, and
+ * magenta have no such swatch and keep their slots; Obscuro's hues all keep theirs.
  *
  * The values are upstream's: a profile's contrast is recorded, never corrected. In Hibernus, over
- * --bg, --fg-2 is 3.6:1 and --fg-3 2.5:1, below 4.5:1, and every hue but --purple is below 4.5:1,
- * --orange and --cyan near 2:1. In Obscuro, over --bg, --purple is 4.1:1, below 4.5:1. Against
+ * --bg, --fg-2 is 3.6:1 and --fg-3 2.5:1, below 4.5:1, and every hue but --purple is below 4.5:1:
+ * --red 4.4:1, --cyan 3.8:1, --green 3.6:1, --yellow 3.0:1, --blue 2.98:1, --magenta 2.8:1, and
+ * --orange 2.2:1, near 2:1. In Obscuro, over --bg, --purple is 4.1:1, below 4.5:1. Against
  * the 3:1 a control boundary and a focus indicator take, Hibernus's --border-2 is 1.9:1 over --bg,
  * and its --blue, the foundation's focus outline, 2.98:1 over --bg and 2.7:1 over --bg-2.
  *
@@ -58,11 +63,12 @@
     --fg-3: light-dark(#929ea0, #929ea0); /* descriptionForeground */
 
     /* Hues: one token per color, named for the color, never for a meaning. */
-    --red: light-dark(#e34e1c, #e66533); /* terminal.ansiRed */
+    --red: light-dark(#c9481d, #e66533); /* list.errorForeground / terminal.ansiRed */
     --orange: light-dark(#ff8c00, #e69533); /* terminal.ansiBrightYellow */
     --yellow: light-dark(#a88c00, #e4b781); /* tokenColors CONSTANT / terminal.ansiYellow */
-    --green: light-dark(#00b368, #49e9a6); /* terminal.ansiGreen */
-    --cyan: light-dark(#00bdd6, #49d6e9); /* terminal.ansiCyan */
+    /* gitDecoration.addedResourceForeground / terminal.ansiGreen */
+    --green: light-dark(#009456, #49e9a6);
+    --cyan: light-dark(#00899e, #49d6e9); /* textBlockQuote.border / terminal.ansiCyan */
     --blue: light-dark(#0094f0, #49ace9); /* terminal.ansiBlue */
     --purple: light-dark(#5842ff, #7060eb); /* tokenColors NUMBER */
     --magenta: light-dark(#ff5792, #df769b); /* terminal.ansiMagenta */
