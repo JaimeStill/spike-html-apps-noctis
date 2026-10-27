@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- The Noctis cases' page: the installed foundation's lean entry and registration module, with
+     this repository's dist/ unit beside them, as a consumer composes a page with the profile. The
+     foundation's bare specifiers map onto its installed dist/, as its exports do, so the unit's
+     module imports the same registry the page's own modules read. The preferences module applies a
+     stored choice before first paint and defines <sl-theme-menu>, which the Theme button opens. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>noctis cases</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@jaimestill/spike-html-apps-foundation/": "/node_modules/@jaimestill/spike-html-apps-foundation/dist/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/node_modules/@jaimestill/spike-html-apps-foundation/dist/page.css" />
+    <link rel="stylesheet" href="/dist/noctis.css" />
+    <script
+      type="module"
+      blocking="render"
+      src="/node_modules/@jaimestill/spike-html-apps-foundation/dist/register.js"
+    ></script>
+    <script type="module" blocking="render" src="/dist/noctis.js"></script>
+    <script
+      type="module"
+      blocking="render"
+      src="/node_modules/@jaimestill/spike-html-apps-foundation/dist/preferences.js"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <p><button type="button" commandfor="theme" command="--open">Theme</button></p>
+    </main>
+    <sl-theme-menu id="theme"></sl-theme-menu>
+  </body>
+</html>

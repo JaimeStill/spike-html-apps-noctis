@@ -1,0 +1,76 @@
+/*
+ * Colors from Noctis (MIT, Liviu Schera), https://github.com/liviuschera/noctis, at commit
+ * 4a82370b2c064e36726c23e94f27ed3782bd6ecd (its package.json at 10.43.3): Noctis Hibernus in light
+ * and Noctis Obscuro in dark, from themes/hibernus.json and themes/obscuro.json.
+ *
+ * noctis.css, the Noctis profile of the foundation's color facet: one zero-specificity block,
+ * applied by data-palette="noctis" on any element to its subtree, declaring the sixteen color
+ * tokens as light-dark() pairs, Hibernus / Obscuro, and nothing else. The tokens' roles and how a
+ * profile is selected are the facet's, in the foundation's baseline/tokens/color.css. Each value's
+ * comment names its upstream swatch, Hibernus / Obscuro, or the one name both share: a key of the
+ * theme's colors, or a tokenColors entry by its name.
+ *
+ * The surfaces step toward the text from editor.background. Hibernus's sideBar.background and
+ * editorWidget.background darken from it in turn; Obscuro's sideBar.background is darker than its
+ * editor, so its --bg-1 takes input.background, the one surface between the editor and
+ * editorWidget.background. Noctis's own *.border swatches are transparent, or match a surface, in
+ * one theme or the other, so the borders take the editor's guide lines: editorRuler.foreground for
+ * dividers, and editorIndentGuide.activeBackground, the stronger, for control boundaries.
+ *
+ * A hue takes the swatch whose color is its name's, the terminal's ANSI slot breaking a tie.
+ * Noctis has no orange or purple slot, and Hibernus's ansiYellow is an orange: --orange takes
+ * ansiBrightYellow, an orange in both; --yellow takes Hibernus's yellow, the CONSTANT token color,
+ * and Obscuro's ansiYellow; --purple takes the NUMBER token color, Noctis's one violet. Its red is
+ * ansiRed, an orange-red in both, and its magenta ansiMagenta, a pink. Where Hibernus's theme file
+ * holds a swatch of the same hue with more contrast over --bg than its ANSI slot, its hue takes
+ * the highest-contrast one: --red list.errorForeground, --green
+ * gitDecoration.addedResourceForeground, and --cyan textBlockQuote.border. Its orange, blue, and
+ * magenta have no such swatch and keep their slots; Obscuro's hues all keep theirs.
+ *
+ * The values are upstream's: a profile's contrast is recorded, never corrected. In Hibernus, over
+ * --bg, --fg-2 is 3.6:1 and --fg-3 2.5:1, below 4.5:1, and every hue but --purple is below 4.5:1:
+ * --red 4.4:1, --cyan 3.8:1, --green 3.6:1, --yellow 3.0:1, --blue 2.98:1, --magenta 2.8:1, and
+ * --orange 2.2:1, near 2:1. In Obscuro, over --bg, --purple is 4.1:1, below 4.5:1. Against
+ * the 3:1 a control boundary and a focus indicator take, Hibernus's --border-2 is 1.9:1 over --bg,
+ * and its --blue, the foundation's focus outline, 2.98:1 over --bg and 2.7:1 over --bg-2.
+ *
+ * The package exports this file as ./noctis.css, and its registration module as ./noctis.js:
+ * together, the Noctis unit. A page that links the foundation's lean entry, page.css, links this
+ * sheet after it, which layers itself into foundation.tokens.color after Flexoki, and imports the
+ * module, which registers noctis and loads no CSS; data-palette then names it, and the theme menu
+ * lists it. <foundation> and <noctis> are where each package is served from:
+ *
+ *   <link rel="stylesheet" href="<foundation>/page.css" />
+ *   <link rel="stylesheet" href="<noctis>/noctis.css" />
+ *   <script type="module" blocking="render" src="<foundation>/register.js"></script>
+ *   <script type="module" blocking="render" src="<noctis>/noctis.js"></script>
+ *   <html data-palette="noctis">
+ */
+
+@layer foundation.tokens.color {
+  :where([data-palette="noctis"]) {
+    /* Surfaces: the base, the first elevated surface, the element surface, the border and the
+       control boundary. */
+    --bg: light-dark(#f4f6f6, #031417); /* editor.background */
+    --bg-1: light-dark(#e7f2f3, #052529); /* sideBar.background / input.background */
+    --bg-2: light-dark(#e0eff1, #062e32); /* editorWidget.background */
+    --border: light-dark(#d0edf1, #243f42); /* editorRuler.foreground */
+    --border-2: light-dark(#88bcc3, #3e6f74); /* editorIndentGuide.activeBackground */
+
+    /* Text, from the strongest down. */
+    --fg: light-dark(#005661, #b2cacd); /* editor.foreground */
+    --fg-2: light-dark(#71838e, #a5b5b5); /* sideBar.foreground */
+    --fg-3: light-dark(#929ea0, #929ea0); /* descriptionForeground */
+
+    /* Hues: one token per color, named for the color, never for a meaning. */
+    --red: light-dark(#c9481d, #e66533); /* list.errorForeground / terminal.ansiRed */
+    --orange: light-dark(#ff8c00, #e69533); /* terminal.ansiBrightYellow */
+    --yellow: light-dark(#a88c00, #e4b781); /* tokenColors CONSTANT / terminal.ansiYellow */
+    /* gitDecoration.addedResourceForeground / terminal.ansiGreen */
+    --green: light-dark(#009456, #49e9a6);
+    --cyan: light-dark(#00899e, #49d6e9); /* textBlockQuote.border / terminal.ansiCyan */
+    --blue: light-dark(#0094f0, #49ace9); /* terminal.ansiBlue */
+    --purple: light-dark(#5842ff, #7060eb); /* tokenColors NUMBER */
+    --magenta: light-dark(#ff5792, #df769b); /* terminal.ansiMagenta */
+  }
+}
