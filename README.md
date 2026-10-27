@@ -26,9 +26,9 @@ project itself declares, which both packages are.
 
 ## Use
 
-The package is `@jaimestill/spike-html-apps-noctis`. It is a unit beside the foundation: a page
-that links the foundation's lean entry, `page.css`, links `noctis.css` after it, and imports
-`noctis.js` beside the foundation's `register.js`. The module imports the foundation's registry
+The package is `@jaimestill/spike-html-apps-noctis`, a unit beside the foundation. A page that
+links the foundation's lean entry, `page.css`, links `noctis.css` after it, and imports `noctis.js`
+beside the foundation's `register.js`. The module imports the foundation's registry
 by package name, so a page reaches it through an import map or a bundler. `data-palette="noctis"`
 then names the profile on any element, and the theme menu lists it beside Flexoki. `<foundation>`
 and `<noctis>` are where each package's `dist/` is served from, such as
@@ -53,8 +53,11 @@ and `<noctis>` are where each package's `dist/` is served from, such as
 
 The profile passes the foundation's `check("color", "noctis")` in light and in dark. Its colors
 are [Noctis](https://github.com/liviuschera/noctis)'s (MIT, Liviu Schera), at commit 4a82370:
-Noctis Hibernus in light and Noctis Obscuro in dark. The sheet's heading names the swatch each
-token takes, and records the contrast its values carry, which this package doesn't correct.
+Noctis Hibernus in light and Noctis Obscuro in dark. Each token takes an upstream swatch, never
+an adjusted value: where Hibernus holds a swatch of a hue with more contrast than its ANSI
+terminal color, as for red, green, and cyan, the hue takes the highest-contrast one. The sheet's
+heading names the swatch each token takes and records the contrast its values carry, which this
+package doesn't correct.
 
 `demo/noctis.html` is a page on the unit and the foundation, with its import map.
 
