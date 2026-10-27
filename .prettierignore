@@ -12,3 +12,5 @@
 .claude/plans/
 .claude/briefs/
 node_modules
+# Noctis's themes, as upstream wrote them: the browser tier pins the profile to them.
+test/fixtures/upstream/

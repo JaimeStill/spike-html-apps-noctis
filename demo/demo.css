@@ -1,9 +1,11 @@
 /*
  * The demo page's layout: page layout is the consumer's, so the foundation's sheets leave it out,
  * and the demo page links this sheet after its entry for one. Its own layer, named after the
- * entry's, follows the foundation's. It sets the main column and its sections alone.
+ * entry's, follows the foundation's. It sets the main column and its sections, and the palette's
+ * specimens: the text steps, the hue chips, and the nested surfaces, each reading the color tokens
+ * alone, so the page shows whichever profile its root names.
  * Adapted from spike-html-apps-foundation (679e550): demo/demo.css, its note on the tools page
- * dropped.
+ * dropped and the specimens added.
  */
 
 @layer demo {
@@ -18,5 +20,61 @@
      container's first child: the section takes the space instead. */
   main > section {
     margin-block-start: var(--space-xl);
+  }
+
+  /* The text steps below --fg, which the body text holds. */
+  .demo-fg-2 {
+    color: var(--fg-2);
+  }
+
+  .demo-fg-3 {
+    color: var(--fg-3);
+  }
+
+  /* The hues: one item per hue, its --hue set on it, as a filled chip, its name in the hue over
+     --bg, and its token; as many columns as fit. */
+  .demo-hues {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: var(--space-s);
+    padding: 0;
+    list-style: none;
+  }
+
+  .demo-hues > li {
+    display: grid;
+    gap: var(--space-3xs);
+    margin: 0;
+  }
+
+  .demo-chip {
+    block-size: var(--space-xl);
+    border-radius: var(--radius-sm);
+    background-color: var(--hue);
+  }
+
+  .demo-hue-name {
+    color: var(--hue);
+    font-weight: 600;
+  }
+
+  /* A surface, its --surface set on it, framed by --border, with the next nested inside it, its
+     own paragraphs spaced by the grid's gap alone. */
+  .demo-surface {
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    border: var(--line-s) solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--surface);
+  }
+
+  .demo-surface > p {
+    margin: 0;
+  }
+
+  /* What follows the outermost surface stands clear of its frame. */
+  .demo-surface + * {
+    margin-block-start: var(--space-s);
   }
 }

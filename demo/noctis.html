@@ -10,7 +10,10 @@
          follows in the color sub-layer, and its registration module imported beside register.js,
          so the theme menu lists flexoki and noctis, and no other color. The foundation's bare
          specifiers, which the unit's module imports, map onto its installed dist/. Its modules run
-         served only: mise run demo. -->
+         served only: mise run demo. Its body shows enough of the palette to judge it: each text
+         step, the eight hues as chips, named text, and buttons, the three surfaces nested inside
+         their borders, and the foundation's elements and tool classes over them; mise run
+         screenshots captures it. -->
     <script type="importmap">
       {
         "imports": {
@@ -35,41 +38,125 @@
         </button>
       </p>
       <p>
-        This page links the foundation's page.css and the Noctis unit alone. The menu's Color row
-        lists Flexoki, the lean default, and Noctis, the unit; space and type hold their defaults
-        only.
+        This page links the foundation's page.css and the Noctis unit alone: Noctis Hibernus in
+        light and Noctis Obscuro in dark. The menu's Color row lists Flexoki, the lean default, and
+        Noctis, the unit; space and type hold their defaults only.
       </p>
-      <p>
-        <a class="button" href="#theme">A link button</a>
-        <button class="button-blue" type="button">Deploy</button>
-        <button class="button-red" type="button">Delete</button>
-        <button class="button-green" type="button" disabled>Disabled</button>
-      </p>
-      <div class="field">
-        <label for="branch">Branch</label>
-        <input id="branch" class="field-grow" type="text" value="main" />
-      </div>
-      <table class="table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Run</th>
-            <th scope="col">Status</th>
-            <th scope="col">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1204</td>
-            <td>passed</td>
-            <td>2m 14s</td>
-          </tr>
-          <tr>
-            <td>1205</td>
-            <td>failed</td>
-            <td>48s</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <section id="text">
+        <h2>Text</h2>
+        <p>
+          <code>--fg</code>, the strongest step: body text, headings, and
+          <a href="#text">a link</a> in blue, beside <code>inline code</code> in green.
+        </p>
+        <p class="demo-fg-2"><code>--fg-2</code>, the second step: secondary text and captions.</p>
+        <p class="demo-fg-3"><code>--fg-3</code>, the third step: hints and disabled text.</p>
+        <blockquote>A quotation, in <code>--fg-2</code> beside a <code>--border-2</code> rule.</blockquote>
+      </section>
+
+      <section id="hues">
+        <h2>Hues</h2>
+        <ul class="demo-hues">
+          <li style="--hue: var(--red)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">red</span>
+            <code>--red</code>
+          </li>
+          <li style="--hue: var(--orange)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">orange</span>
+            <code>--orange</code>
+          </li>
+          <li style="--hue: var(--yellow)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">yellow</span>
+            <code>--yellow</code>
+          </li>
+          <li style="--hue: var(--green)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">green</span>
+            <code>--green</code>
+          </li>
+          <li style="--hue: var(--cyan)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">cyan</span>
+            <code>--cyan</code>
+          </li>
+          <li style="--hue: var(--blue)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">blue</span>
+            <code>--blue</code>
+          </li>
+          <li style="--hue: var(--purple)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">purple</span>
+            <code>--purple</code>
+          </li>
+          <li style="--hue: var(--magenta)">
+            <span class="demo-chip"></span>
+            <span class="demo-hue-name">magenta</span>
+            <code>--magenta</code>
+          </li>
+        </ul>
+        <p>
+          <button class="button-red" type="button">red</button>
+          <button class="button-orange" type="button">orange</button>
+          <button class="button-yellow" type="button">yellow</button>
+          <button class="button-green" type="button">green</button>
+          <button class="button-cyan" type="button">cyan</button>
+          <button class="button-blue" type="button">blue</button>
+          <button class="button-purple" type="button">purple</button>
+          <button class="button-magenta" type="button">magenta</button>
+        </p>
+      </section>
+
+      <section id="surfaces">
+        <h2>Surfaces</h2>
+        <div class="demo-surface" style="--surface: var(--bg)">
+          <p><code>--bg</code>, the base, inside a <code>--border</code> frame</p>
+          <div class="demo-surface" style="--surface: var(--bg-1)">
+            <p><code>--bg-1</code>, the first elevated surface</p>
+            <div class="demo-surface" style="--surface: var(--bg-2)">
+              <p><code>--bg-2</code>, the element surface, and a control on it:</p>
+              <div class="field">
+                <label for="branch">Branch</label>
+                <input id="branch" class="field-grow" type="text" value="main" />
+                <small>Its boundary is <code>--border-2</code>.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Run</th>
+              <th scope="col">Status</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1204</td>
+              <td>passed</td>
+              <td>2m 14s</td>
+            </tr>
+            <tr>
+              <td>1205</td>
+              <td>failed</td>
+              <td>48s</td>
+            </tr>
+            <tr>
+              <td>1206</td>
+              <td>passed</td>
+              <td>1m 51s</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <a class="button" href="#surfaces">A link button</a>
+          <button class="button" type="button" disabled>Disabled</button>
+        </p>
+      </section>
     </main>
     <sl-theme-menu id="theme"></sl-theme-menu>
   </body>

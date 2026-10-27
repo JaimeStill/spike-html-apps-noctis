@@ -83,6 +83,14 @@ description = "Serve the Noctis demo page, on dist/ and the installed foundation
 depends = ["build"]
 run = "node scripts/demo.js"
 
+# Never a dependency of check: a reviewer's look at the page, not a test.
+[tasks.screenshots]
+description = "Capture the demo page and the theme menu, wide and narrow, in noctis light and dark, shown inline in kitty; --keep leaves the captures"
+depends = ["preflight browser", "build"]
+# raw: with dependencies, mise prefixes a task's output through a pipe; icat needs the terminal.
+raw = true
+run = "scripts/screenshots.sh"
+
 [tasks.currency]
 description = "Report every mise tool, package.json pin, action pin, and the foundation's tag behind its latest, exiting nonzero if any"
 run = "scripts/currency.sh"
