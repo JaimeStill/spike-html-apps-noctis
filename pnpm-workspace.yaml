@@ -1,8 +1,0 @@
-# pnpm's settings for the install (mise run install); the repository is one package, so it lists
-# no packages. The foundation, a peer that a github: devDependency installs at its release tag,
-# needs no setting here: pnpm guards only a git dependency below the top level (blockExoticSubdeps).
-# Adapted from spike-html-apps-components (9a4392e): pnpm-workspace.yaml, with no setting left.
-#
-# No package is excluded from pnpm's minimum release age, its default of a day: every pin is older.
-# allowBuilds lists nothing: without eslint-plugin-import-x and eslint-import-resolver-typescript,
-# unrs-resolver isn't installed, and no other dependency has a build script.
