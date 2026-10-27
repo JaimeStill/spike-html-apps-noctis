@@ -1,10 +1,7 @@
-// The Noctis unit from this repository's dist/, on test/fixtures/noctis.html beside the installed
-// foundation's lean entry, as a consumer loads it: page.css, register.js, noctis.css, and
-// noctis.js. Its registration module registers noctis under the color facet, after the lean
-// default, in the registry the page's own modules read; the theme menu lists it; data-palette and
-// a stored choice apply it; the foundation's conformance check passes it in light and in dark, and
-// fails a copy of its sheet with a token dropped; and each token resolves, in each scheme, to the
-// upstream swatch its comment names, read from test/fixtures/upstream/.
+// The Noctis unit from dist/ on test/fixtures/noctis.html, beside the installed foundation's lean
+// entry, as a consumer loads it: it registers under color, the theme menu lists it, data-palette
+// and a stored choice apply it, the foundation's check passes it and fails it with a token dropped,
+// and each token resolves in each scheme to the upstream swatch SWATCHES and its comment name.
 
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
