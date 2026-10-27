@@ -1,0 +1,28 @@
+{
+  "name": "@jaimestill/spike-html-apps-noctis",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./noctis.css": "./dist/noctis.css",
+    "./noctis.js": {
+      "types": "./dist/noctis.d.ts",
+      "default": "./dist/noctis.js"
+    }
+  },
+  "peerDependencies": {
+    "@jaimestill/spike-html-apps-foundation": "^0.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@jaimestill/spike-html-apps-foundation": "github:JaimeStill/spike-html-apps-foundation#v0.2.0",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1"
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>noctis</title>
+    <!-- Adapted from spike-html-apps-foundation (679e550): demo/unit.html, with the Noctis unit
+         in place of Primer. The installed foundation's lean page entry composed with this
+         package's unit, as a consumer composes it: its sheet linked after page.css, which it
+         follows in the color sub-layer, and its registration module imported beside register.js,
+         so the theme menu lists flexoki and noctis, and no other color. The foundation's bare
+         specifiers, which the unit's module imports, map onto its installed dist/. Its modules run
+         served only: mise run demo. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@jaimestill/spike-html-apps-foundation/": "../node_modules/@jaimestill/spike-html-apps-foundation/dist/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="../node_modules/@jaimestill/spike-html-apps-foundation/dist/page.css" />
+    <link rel="stylesheet" href="../dist/noctis.css" />
+    <link rel="stylesheet" href="demo.css" />
+    <script type="module" blocking="render" src="../node_modules/@jaimestill/spike-html-apps-foundation/dist/register.js"></script>
+    <script type="module" blocking="render" src="../dist/noctis.js"></script>
+    <script type="module" blocking="render" src="../node_modules/@jaimestill/spike-html-apps-foundation/dist/preferences.js"></script>
+    <script type="module" src="../node_modules/@jaimestill/spike-html-apps-foundation/dist/keys.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Noctis</h1>
+      <p>
+        <button type="button" commandfor="theme" command="--open" data-keys="t">
+          Theme <kbd>T</kbd>
+        </button>
+      </p>
+      <p>
+        This page links the foundation's page.css and the Noctis unit alone. The menu's Color row
+        lists Flexoki, the lean default, and Noctis, the unit; space and type hold their defaults
+        only.
+      </p>
+      <p>
+        <a class="button" href="#theme">A link button</a>
+        <button class="button-blue" type="button">Deploy</button>
+        <button class="button-red" type="button">Delete</button>
+        <button class="button-green" type="button" disabled>Disabled</button>
+      </p>
+      <div class="field">
+        <label for="branch">Branch</label>
+        <input id="branch" class="field-grow" type="text" value="main" />
+      </div>
+      <table class="table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Run</th>
+            <th scope="col">Status</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1204</td>
+            <td>passed</td>
+            <td>2m 14s</td>
+          </tr>
+          <tr>
+            <td>1205</td>
+            <td>failed</td>
+            <td>48s</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <sl-theme-menu id="theme"></sl-theme-menu>
+  </body>
+</html>

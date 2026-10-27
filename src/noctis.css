@@ -1,0 +1,5 @@
+/*
+ * The Noctis unit's sheet, beside its registration module, noctis.js: the color profile's one
+ * zero-specificity block in foundation.tokens.color, applied by data-palette="noctis". It declares
+ * no token yet; the profile's slice writes them.
+ */
