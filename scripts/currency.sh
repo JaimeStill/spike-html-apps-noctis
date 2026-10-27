@@ -3,7 +3,8 @@
 # Actions pin, and github: devDependency's tag behind its latest, and each peer range that doesn't
 # admit its package's latest release, and exits 1 if any; prints nothing when all are current.
 # Reads the network.
-# From spike-html-apps-components (9a4392e): scripts/currency.sh.
+# Adapted from spike-html-apps-components (9a4392e): scripts/currency.sh, its peer note on the
+# profile.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -32,7 +33,7 @@ while read -r package pin; do
       trailing+=$'\n'"package.json: $package ${spec#*#} -> $latest"
     fi
     # A peer (the foundation) is by a caret range, which must admit that latest release, so a
-    # consumer can declare it beside the components: by the release test's own rule.
+    # consumer can declare it beside the profile: by the release test's own rule.
     range=$(node -p 'require("./package.json").peerDependencies?.[process.argv[1]] ?? ""' "$package")
     if [[ -n $range ]] && ! node --input-type=module -e '
       import { caretAdmits } from "./test/unit/release.js";
