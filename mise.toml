@@ -51,8 +51,12 @@ description = "Lint the GitHub Actions workflows with actionlint"
 run = "actionlint"
 
 [tasks.types]
-description = "Type-check the sources with tsc, on the installed foundation's declarations, and the tests"
-depends = ["preflight", "types:test"]
+description = "Type-check the sources and the tests with tsc"
+depends = ["types:src", "types:test"]
+
+[tasks."types:src"]
+description = "Type-check the sources with tsc, on the installed foundation's declarations"
+depends = ["preflight"]
 run = "tsc --noEmit -p ."
 
 [tasks."types:test"]

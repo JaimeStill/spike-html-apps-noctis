@@ -2,8 +2,7 @@
 // demo/noctis.html in three states, the whole page and the theme menu open wide and narrow, in
 // noctis, in light and in dark. The bin sets data-palette and the scheme on the page's root, as a
 // stored choice would, so the demo page itself names no profile. The server serves the repository
-// root, whose demo page loads dist/ and the installed foundation by their paths. Node runs it by
-// stripping its types; mise run types:test checks it.
+// root, whose demo page loads dist/ and the installed foundation by their paths.
 // Adapted from spike-html-apps-noctis (5208630): scripts/screenshots.js, as a description.
 
 import { until } from "@jaimestill/spike-html-apps-tooling/browser.js";
@@ -44,4 +43,5 @@ const description: Description = {
   facets: [{ flag: "palette", attribute: "data-palette", default: "noctis" }],
   server: { root: ".." },
 };
+
 export default description;

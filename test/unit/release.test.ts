@@ -1,5 +1,5 @@
 // The release's integrity: a pnpm pack of the build, extracted, against package.json's files and
-// exports, its license, and its dependencies, by release.js's releaseProblems, as it stands and in
+// exports, its license, and its dependencies, by release.ts's releaseProblems, as it stands and in
 // scratch copies with one fault each. It packs the dist/ that mise run build writes.
 // Adapted from spike-html-apps-components (9a4392e): test/unit/release.test.js, its faults on the
 // profile's files and with no dependency, in TypeScript.
