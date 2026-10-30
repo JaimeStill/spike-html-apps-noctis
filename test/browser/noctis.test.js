@@ -8,7 +8,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { after, afterEach, before, describe, test } from "node:test";
 
-import { launch } from "@jaimestill/spike-html-apps-tooling/browser.js";
+import { launch, until } from "@jaimestill/spike-html-apps-tooling/browser.js";
 import { serve } from "@jaimestill/spike-html-apps-tooling/server.js";
 
 const FOUNDATION = "@jaimestill/spike-html-apps-foundation";
@@ -131,17 +131,15 @@ describe("noctis", { timeout: 60_000 }, () => {
   test("the theme menu's color row lists flexoki and noctis", async () => {
     const page = await open();
     await page.evaluate(`document.querySelector("button[commandfor=theme]").click()`);
-    const colors = await page.evaluate(`new Promise((resolve, reject) => {
-      const end = performance.now() + 2000;
-      const poll = () => {
-        const radios = document.querySelectorAll('sl-theme-menu [data-section="color"] input');
-        if (document.querySelector("sl-theme-menu dialog")?.open && radios.length) {
-          resolve([...radios].map((radio) => radio.value));
-        } else if (performance.now() > end) reject(new Error("the theme menu didn't open"));
-        else setTimeout(poll, 10);
-      };
-      poll();
-    })`);
+    // The color row's values, once the menu is open and the row filled.
+    const colors = await until(
+      page,
+      `(() => {
+        const radios = [...document.querySelectorAll('sl-theme-menu [data-section="color"] input')];
+        const open = document.querySelector("sl-theme-menu dialog")?.open;
+        return open && radios.length > 0 && radios.map((radio) => radio.value);
+      })()`,
+    );
     assert.deepEqual(colors, ["flexoki", "noctis"]);
   });
 
