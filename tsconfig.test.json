@@ -1,0 +1,16 @@
+// The suite's type-check, mise run types:test: test/'s TypeScript, and scripts/' screenshots
+// description, as Node runs them, by type stripping, against @types/node, never emitted. It keeps
+// the base's strictness and erasable syntax and takes Node's module rules, the DOM's types left
+// out: page code runs as evaluated strings.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2024"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": ["node"],
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "include": ["test/**/*.ts", "scripts/**/*.ts"]
+}

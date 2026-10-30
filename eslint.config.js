@@ -16,5 +16,5 @@ export default defineConfig([
   { files: code, extends: [js.configs.recommended, tseslint.configs.recommended] },
   { files: code, languageOptions: { globals: globals.browser } },
   // The suite and the scripts run on node.
-  { files: ["test/**/*.js", "scripts/**"], languageOptions: { globals: globals.node } },
+  { files: ["test/**/*.ts", "scripts/**"], languageOptions: { globals: globals.node } },
 ]);

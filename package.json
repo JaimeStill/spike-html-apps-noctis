@@ -19,6 +19,8 @@
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@jaimestill/spike-html-apps-foundation": "github:JaimeStill/spike-html-apps-foundation#v0.2.0",
+    "@jaimestill/spike-html-apps-tooling": "github:JaimeStill/spike-html-apps-tooling#v0.2.0",
+    "@types/node": "26.6.6",
     "eslint": "10.13.0",
     "globals": "17.13.0",
     "prettier": "3.9.10",
