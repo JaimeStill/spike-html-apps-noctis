@@ -8,8 +8,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { after, afterEach, before, describe, test } from "node:test";
 
-import { launch } from "./support/browser-pipe.js";
-import { serve } from "./support/server.js";
+import { launch } from "@jaimestill/spike-html-apps-tooling/browser.js";
+import { serve } from "@jaimestill/spike-html-apps-tooling/server.js";
 
 const FOUNDATION = "@jaimestill/spike-html-apps-foundation";
 /** The foundation's preferences key, under which every page on an origin shares one choice. */
@@ -73,7 +73,8 @@ const pages = [];
 const fixture = () => `${server.origin}/test/fixtures/noctis.html`;
 
 before(async () => {
-  server = await serve();
+  // The repository root, whose fixture loads dist/ and the installed foundation by their paths.
+  server = await serve({ root: join(import.meta.dirname, "../..") });
   browser = await launch();
 });
 // Every page shares one origin, and so the one stored choice.

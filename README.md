@@ -66,13 +66,18 @@ package doesn't correct.
 Tasks run through [mise](https://mise.jdx.dev):
 
 ```
-mise run install      # the pinned tools, and node_modules with the foundation at its tag; reads the network
+mise run install      # the pinned tools, and node_modules with the foundation and the tooling at their tags; reads the network
 mise run check        # lint, types, build, and the unit and browser tiers; reads no network
 mise run build        # src/ into dist/
 mise run demo         # serve the demo page on dist/ and the installed foundation
-mise run screenshots  # capture the demo page and the theme menu in noctis, light and dark, shown in kitty; --keep keeps them
-mise run currency     # report every tool, package, and action pin, and the foundation's tag and peer range, behind its latest
+mise run screenshots  # capture the demo page and the theme menu in noctis, light and dark, shown in kitty; the tooling's flags follow --
+mise run currency     # report every tool, package, and action pin, the foundation's and the tooling's tags, and the peer range, behind its latest
 ```
+
+The browser tier, `mise run demo`, and `mise run screenshots` run on
+[spike-html-apps-tooling](https://github.com/JaimeStill/spike-html-apps-tooling), a devDependency
+at its release tag: its driver and server, and its screenshot command on the description in
+`scripts/screenshots.config.js`.
 
 A push to main whose `package.json` version has no tag yet releases it: the check, then the pack
 committed and tagged, and a GitHub release from `CHANGELOG.md`.
