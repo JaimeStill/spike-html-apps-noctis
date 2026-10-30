@@ -56,7 +56,7 @@ depends = ["preflight", "types:test"]
 run = "tsc --noEmit -p ."
 
 [tasks."types:test"]
-description = "Type-check the tests with tsc, on @types/node and the tooling's declarations"
+description = "Type-check the tests and the screenshots description with tsc, on @types/node and the tooling's declarations"
 depends = ["preflight"]
 run = "tsc -p tsconfig.test.json"
 
@@ -89,14 +89,14 @@ depends = ["build"]
 run = "node scripts/demo.js"
 
 # Never a dependency of check: a reviewer's look at the page, not a test.
-# The tooling's bin on scripts/screenshots.config.js; mise passes a task's extra arguments on to
+# The tooling's bin on scripts/screenshots.config.ts; mise passes a task's extra arguments on to
 # its last run command, so `mise run screenshots -- --output directory --dir <path>` reaches it.
 [tasks.screenshots]
 description = "Capture the demo page and the theme menu, wide and narrow, in noctis light and dark, shown inline in kitty; the tooling's flags follow --"
 depends = ["preflight browser", "build"]
 # raw: with dependencies, mise prefixes a task's output through a pipe; icat needs the terminal.
 raw = true
-run = "BROWSER_EXECUTABLE=$(mise which chrome-headless-shell) pnpm exec spike-html-apps-screenshots scripts/screenshots.config.js"
+run = "BROWSER_EXECUTABLE=$(mise which chrome-headless-shell) pnpm exec spike-html-apps-screenshots scripts/screenshots.config.ts"
 
 [tasks.currency]
 description = "Report every mise tool, package.json pin, action pin, and the foundation's and the tooling's tags behind its latest, exiting nonzero if any"
