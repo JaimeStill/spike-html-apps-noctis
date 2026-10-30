@@ -77,7 +77,7 @@ mise run currency     # report every tool, package, and action pin, the foundati
 The browser tier, `mise run demo`, and `mise run screenshots` run on
 [spike-html-apps-tooling](https://github.com/JaimeStill/spike-html-apps-tooling), a devDependency
 at its release tag: its driver and server, and its screenshot command on the description in
-`scripts/screenshots.config.ts`.
+`scripts/screenshots.config.ts`. `mise run screenshots -- --help` lists the command's flags.
 
 A push to main whose `package.json` version has no tag yet releases it: the check, then the pack
 committed and tagged, and a GitHub release from `CHANGELOG.md`.
