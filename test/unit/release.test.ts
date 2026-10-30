@@ -2,7 +2,7 @@
 // exports, its license, and its dependencies, by release.js's releaseProblems, as it stands and in
 // scratch copies with one fault each. It packs the dist/ that mise run build writes.
 // Adapted from spike-html-apps-components (9a4392e): test/unit/release.test.js, its faults on the
-// profile's files and with no dependency.
+// profile's files and with no dependency, in TypeScript.
 
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -10,11 +10,12 @@ import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:f
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, before, describe, test } from "node:test";
-import { listFiles, releaseProblems } from "./release.js";
+import { listFiles, releaseProblems } from "./release.ts";
+import type { Manifest } from "./release.ts";
 
 const root = join(import.meta.dirname, "../..");
 const src = join(root, "src");
-const scratches = [];
+const scratches: string[] = [];
 
 /** A new temporary directory, removed after the run. */
 function scratchDir() {
@@ -23,8 +24,19 @@ function scratchDir() {
   return scratch;
 }
 
+/** The pack's manifest as this repository writes it: its peer and its devDependencies declared,
+ * which the faults rewrite. */
+interface Packed extends Manifest {
+  exports: Record<string, string | Record<string, string> | null>;
+  peerDependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
+}
+
+/** A fault: a change to a scratch copy of the pack, at dir, and to its manifest. */
+type Change = (dir: string, manifest: Packed) => void;
+
 // The pack under test: pnpm pack's tarball, extracted, its package/ directory.
-let pack;
+let pack: string;
 before(() => {
   const scratch = scratchDir();
   execFileSync("pnpm", ["pack", "--pack-destination", scratch], { cwd: root, stdio: "ignore" });
@@ -37,16 +49,19 @@ after(() => {
 });
 
 /** A scratch copy of the pack, `change` applied to it and its manifest, and its problems. */
-function faulted(change) {
+function faulted(change: Change): string[] {
   const copy = join(scratchDir(), "package");
   cpSync(pack, copy, { recursive: true });
-  const manifest = JSON.parse(readFileSync(join(copy, "package.json"), "utf8"));
+  const manifest: Packed = JSON.parse(readFileSync(join(copy, "package.json"), "utf8"));
   change(copy, manifest);
   writeFileSync(join(copy, "package.json"), JSON.stringify(manifest));
   return releaseProblems(copy, src);
 }
 
-const remove = (path) => (dir) => rmSync(join(dir, path));
+const remove =
+  (path: string): Change =>
+  (dir) =>
+    rmSync(join(dir, path));
 
 describe("release pack", () => {
   test("the pack is package.json, README.md, LICENSE, and the build", () => {
@@ -60,22 +75,24 @@ describe("release pack", () => {
   });
 
   test("the pack keeps the dependencies package.json declares, as written", () => {
-    const packed = JSON.parse(readFileSync(join(pack, "package.json"), "utf8"));
-    const source = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
-    for (const field of ["dependencies", "peerDependencies", "devDependencies"]) {
+    const packed: Manifest = JSON.parse(readFileSync(join(pack, "package.json"), "utf8"));
+    const source: Manifest = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
+    for (const field of ["dependencies", "peerDependencies", "devDependencies"] as const) {
       assert.deepEqual(packed[field], source[field], field);
     }
   });
 
   // npm prepares a git dependency that has a build script, which the tag's tree must never need.
   test("the packed manifest carries no scripts", () => {
-    const packed = JSON.parse(readFileSync(join(pack, "package.json"), "utf8"));
+    const packed: Manifest & { scripts?: unknown } = JSON.parse(
+      readFileSync(join(pack, "package.json"), "utf8"),
+    );
     assert.equal(packed.scripts, undefined);
   });
 
   const foundation = "@jaimestill/spike-html-apps-foundation";
   const github = "github:JaimeStill/spike-html-apps-foundation";
-  const faults = {
+  const faults: Record<string, [Change, string]> = {
     "a source .css with no built copy": [
       remove("dist/noctis.css"),
       "src/noctis.css has no built dist/noctis.css",
@@ -152,7 +169,8 @@ describe("release pack", () => {
       `package.json declares peer ${foundation} *, not a caret range`,
     ],
     "no peer": [
-      (_, copy) => delete copy.peerDependencies,
+      // Packed declares the peer, which this fault alone takes away.
+      (_, copy) => delete (copy as Manifest).peerDependencies,
       `package.json doesn't declare peer ${foundation}`,
     ],
     "an undeclared extra peer": [
@@ -204,13 +222,13 @@ describe("release pack", () => {
   };
   // The tags a caret range admits: its own major at 1.0.0 and above, its own minor below, and its
   // own patch below 0.1.0, each at or above the range's floor.
-  const admitted = {
+  const admitted: Record<string, string[]> = {
     "^0.2.0": ["v0.2.0", "v0.2.4"],
     "^0.1.0": ["v0.1.0", "v0.1.7"],
     "^0.0.3": ["v0.0.3"],
     "^1.2.0": ["v1.2.0", "v1.9.4"],
   };
-  const denied = {
+  const denied: Record<string, string[]> = {
     "^0.2.0": ["v0.1.0", "v0.3.0", "v1.2.0"],
     "^0.1.0": ["v0.0.9", "v0.2.0", "v1.1.0"],
     "^0.0.3": ["v0.0.2", "v0.0.4", "v0.1.3"],
