@@ -6,6 +6,16 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the packag
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-31
+
+### Changed
+
+- The foundation peer is `^0.3.0`, the release that adds the `--accent-color` hook, and the
+  repository installs the foundation by `github:JaimeStill/spike-html-apps-foundation#v0.3.0`.
+  The profile's tokens are unchanged.
+- The repository's tooling devDependency is
+  `github:JaimeStill/spike-html-apps-tooling#v0.3.0`.
+
 ## [0.1.0] - 2026-10-27
 
 ### Added
@@ -21,5 +31,6 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the packag
 - Each release is a tag, `v<version>`, whose tree is the pack, with the tarball on its GitHub
   release.
 
-[Unreleased]: https://github.com/JaimeStill/spike-html-apps-noctis/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/JaimeStill/spike-html-apps-noctis/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/JaimeStill/spike-html-apps-noctis/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/JaimeStill/spike-html-apps-noctis/releases/tag/v0.1.0

@@ -11,14 +11,14 @@ as a peer, and is released by git tag.
 Each release is a tag, `v<version>`, whose tree is the package as `pnpm pack` builds it:
 `package.json`, this README, the LICENSE, and `dist/`; each GitHub release also carries the
 tarball. It takes [the foundation](https://github.com/JaimeStill/spike-html-apps-foundation) as a
-peer at `^0.2.0`: a consumer declares the foundation beside the profile, and the one copy serves
+peer at `^0.3.0`: a consumer declares the foundation beside the profile, and the one copy serves
 both, so the profile registers in the registry the page's own modules read. Install both by their
 tags:
 
 ```
-npm install --allow-git=root github:JaimeStill/spike-html-apps-noctis#v0.1.0 github:JaimeStill/spike-html-apps-foundation#v0.2.0
-pnpm add github:JaimeStill/spike-html-apps-noctis#v0.1.0 github:JaimeStill/spike-html-apps-foundation#v0.2.0
-bun add github:JaimeStill/spike-html-apps-noctis#v0.1.0 github:JaimeStill/spike-html-apps-foundation#v0.2.0
+npm install --allow-git=root github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.0
+pnpm add github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.0
+bun add github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.0
 ```
 
 npm 12 refuses git dependencies unless `--allow-git` allows them; `root` allows the ones the
