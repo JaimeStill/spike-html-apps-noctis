@@ -16,9 +16,9 @@ both, so the profile registers in the registry the page's own modules read. Inst
 tags:
 
 ```
-npm install --allow-git=root github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.0
-pnpm add github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.0
-bun add github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.0
+npm install --allow-git=root github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.1
+pnpm add github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.1
+bun add github:JaimeStill/spike-html-apps-noctis#v0.1.1 github:JaimeStill/spike-html-apps-foundation#v0.3.1
 ```
 
 npm 12 refuses git dependencies unless `--allow-git` allows them; `root` allows the ones the
